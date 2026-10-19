@@ -1,0 +1,14 @@
+# Data config. Paths are relative to the repo root.
+seed: 0
+kaggle_dir: data/kaggle            # trainLabels.csv lives here
+kaggle_img_dir: data/kaggle/train/train   # 1.png ... 50000.png (extracted train.7z)
+torchvision_root: data/torchvision
+ood_root: data/ood                 # OpenOOD download (benchmark_imglist/, images_classic/)
+splits_dir: splits
+val_size: 5000
+mean: [0.4914, 0.4822, 0.4465]
+std: [0.2470, 0.2435, 0.2616]
+num_workers: 4
+near_ood: [cifar100, tin]
+far_ood: [svhn, texture, places365]
+optional_ood: [mnist]
