@@ -68,6 +68,10 @@ class ImglistDataset(Dataset):
         return (self.transform(img) if self.transform else img), -1
 
 
+def _ood_label(_):
+    return -1  # module-level (not a lambda) so Windows DataLoader workers can pickle it
+
+
 def get_dataset(name, cfg, transform=None):
     """ID splits: 'train', 'val' (Kaggle), 'test' (torchvision). OOD: names below. OOD labels are -1."""
     tv = cfg["torchvision_root"]
@@ -79,13 +83,13 @@ def get_dataset(name, cfg, transform=None):
         return torchvision.datasets.CIFAR10(tv, train=False, transform=transform)
     if name == "cifar100":
         return torchvision.datasets.CIFAR100(tv, train=False, transform=transform,
-                                             target_transform=lambda _: -1)
+                                             target_transform=_ood_label)
     if name == "svhn":
         return torchvision.datasets.SVHN(os.path.join(tv, "svhn"), split="test", transform=transform,
-                                         target_transform=lambda _: -1)
+                                         target_transform=_ood_label)
     if name == "mnist":  # grayscale -> 3 channels before the shared transform
         t = T.Compose([T.Grayscale(3), transform]) if transform else T.Grayscale(3)
-        return torchvision.datasets.MNIST(tv, train=False, transform=t, target_transform=lambda _: -1)
+        return torchvision.datasets.MNIST(tv, train=False, transform=t, target_transform=_ood_label)
     # OpenOOD cleaned lists. tin_val is the held-out OOD slice for fusion tuning (disjoint from tin test).
     openood = {"tin": "test_tin.txt", "places365": "test_places365.txt",
                "texture": "test_texture.txt", "tin_val": "val_tin.txt"}
