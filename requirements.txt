@@ -1,0 +1,17 @@
+# CUDA 13.0 build of torch (driver 591.66 / CUDA 13.1). CPU-only builds are not accepted.
+--extra-index-url https://download.pytorch.org/whl/cu130
+torch==2.14.1+cu130
+torchvision==0.29.1+cu130
+scikit-learn==1.9.1
+numpy==2.4.6
+pandas==3.0.6
+faiss-cpu==1.15.1
+PyYAML==6.0.3
+matplotlib==3.11.2
+openpyxl==3.1.5
+tqdm==4.70.1
+py7zr==1.1.4
+pytest==9.1.1
+tensorboard==2.21.0
+# optional, for the CLIP score (stage 7)
+# open_clip_torch

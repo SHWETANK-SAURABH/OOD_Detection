@@ -1,0 +1,15 @@
+# private / local only
+prompt/
+.venv/
+.cache/
+*.log
+
+# data and large artifacts
+data/
+results/checkpoints/
+results/features/
+runs/
+
+__pycache__/
+*.pyc
+.pytest_cache/
