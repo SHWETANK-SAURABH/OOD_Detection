@@ -1,0 +1,15 @@
+# ResNet-18 training on the Kaggle 45k split. Override seed/epochs on the command line.
+seed: 0
+data_config: configs/data.yaml
+epochs: 100
+batch_size: 128
+lr: 0.1
+momentum: 0.9
+weight_decay: 0.0005
+# The two settings below follow OpenOOD v1.5 (openood/trainers/base_trainer.py @ 3c35632):
+# Nesterov SGD and cosine decay stepped every iteration down to 1e-6.
+nesterov: true
+lr_min: 1.0e-6
+num_workers: 4
+amp: true            # torch.autocast float16 + GradScaler
+out_dir: results/checkpoints
