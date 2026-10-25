@@ -8,7 +8,7 @@ prompt/
 data/
 results/checkpoints/
 results/features/
-runs/
+/runs/
 
 __pycache__/
 *.pyc

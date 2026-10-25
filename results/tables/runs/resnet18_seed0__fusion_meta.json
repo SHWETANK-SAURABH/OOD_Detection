@@ -1,0 +1,75 @@
+{
+  "seed": 0,
+  "fusion_config_file": "configs/fusion.yaml",
+  "fusion_config": {
+    "react_percentile": 90,
+    "knn_k": 50,
+    "scorers": [
+      "msp",
+      "maxlogit",
+      "energy",
+      "react",
+      "knn",
+      "mahalanobis"
+    ],
+    "tune_set": "tin_val",
+    "use_clip": false,
+    "clip_feature_dir": "results/features/clip_vitb16",
+    "clip_descriptions": false
+  },
+  "data_config": {
+    "seed": 0,
+    "kaggle_dir": "data/kaggle",
+    "kaggle_img_dir": "data/kaggle/train/train",
+    "torchvision_root": "data/torchvision",
+    "ood_root": "data/ood",
+    "splits_dir": "splits",
+    "val_size": 5000,
+    "mean": [
+      0.4914,
+      0.4822,
+      0.4465
+    ],
+    "std": [
+      0.247,
+      0.2435,
+      0.2616
+    ],
+    "num_workers": 4,
+    "near_ood": [
+      "cifar100",
+      "tin"
+    ],
+    "far_ood": [
+      "svhn",
+      "texture",
+      "places365"
+    ],
+    "optional_ood": [
+      "mnist"
+    ]
+  },
+  "weights": {
+    "equal": {
+      "msp": 0.1667,
+      "maxlogit": 0.1667,
+      "energy": 0.1667,
+      "react": 0.1667,
+      "knn": 0.1667,
+      "mahalanobis": 0.1667
+    },
+    "tuned": {
+      "msp": -0.1249,
+      "maxlogit": 0.2292,
+      "energy": -0.1726,
+      "react": 0.0319,
+      "knn": 0.408,
+      "mahalanobis": -0.0332
+    }
+  },
+  "fused_mean_on_id_val": {
+    "fused_equal": -1.7985100473101313e-07,
+    "fused_tuned": -8.587836930473713e-08,
+    "fused_rank": 0.00024451999999999894
+  }
+}

@@ -1,0 +1,5 @@
+run,seed,best_val_acc,test_acc,batch_size,epochs,test_set
+resnet18_holdout_seed0,0.0,0.9482,0.9474,128.0,100.0,Kaggle hold-out 5k
+resnet18_seed0,0.0,0.9462,0.9461,128.0,100.0,torchvision test 10k
+resnet18_seed1,1.0,0.9448000000000001,0.9451,128.0,100.0,torchvision test 10k
+resnet18_seed2,2.0,0.9508000000000001,0.9464,128.0,100.0,torchvision test 10k
