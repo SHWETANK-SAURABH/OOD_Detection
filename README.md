@@ -222,7 +222,19 @@ Training data: 45k Kaggle train + torchvision test (seed 0) vs Kaggle-only 40k /
 | fused_tuned |            90.66 |            90.32 |           92.28 |           92.72 |
 | fused_rank  |            89.29 |            89.35 |           91.82 |           92.39 |
 
-Stage 11 (Kaggle test-set submission) was not run: it needs `test.7z`, which the data rules exclude.
+### Kaggle test-set submission (classification only)
+
+`python -m src.predict_kaggle` unpacks `data/kaggle/test.7z`, predicts all 300,000 images with the seed-0
+model and writes `results/kaggle_submission.csv`, using the same `id,label` columns and id order as
+`sampleSubmission.csv`.
+
+The Kaggle test set has no labels, so `python scripts/check_kaggle_submission.py` matches its images to
+torchvision's labeled CIFAR-10 test set by pixel hash:
+
+- **Matches:** 40,186 of the 300,000 Kaggle test images are exact copies of 9,823 distinct CIFAR-10 test images.
+  The rest have no labeled match.
+- **Accuracy:** 94.66% on all 40,186 matched images, and 94.55% when each distinct image is counted once.
+- **Not used for OOD:** the Kaggle test set plays no part in the OOD evaluation.
 
 
 ## Layout
@@ -230,9 +242,9 @@ Stage 11 (Kaggle test-set submission) was not run: it needs `test.7z`, which the
 ```
 configs/   data.yaml train.yaml train_holdout.yaml fusion.yaml fusion_clip.yaml fusion_clip_desc.yaml clip_descriptions.yaml
 splits/    train_idx.npy val_idx.npy train40k_idx.npy test_kaggle5k_idx.npy
-src/       datasets.py models.py train.py extract.py fusion.py metrics.py evaluate.py report.py utils.py
+src/       datasets.py models.py train.py extract.py fusion.py metrics.py evaluate.py report.py predict_kaggle.py utils.py
 src/scores/ logit.py react.py knn.py mahalanobis.py clip_score.py
-scripts/   download_data.sh run_all.sh make_split.py check_hashes.py check_env.py
+scripts/   download_data.sh run_all.sh make_split.py check_hashes.py check_env.py check_kaggle_submission.py
 results/   tables/ plots/   (checkpoints/ and features/ are git-ignored)
 tests/     test_metrics.py test_scores.py
 ```
