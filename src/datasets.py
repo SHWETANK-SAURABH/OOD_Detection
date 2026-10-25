@@ -73,11 +73,12 @@ def _ood_label(_):
 
 
 def get_dataset(name, cfg, transform=None):
-    """ID splits: 'train', 'val' (Kaggle), 'test' (torchvision). OOD: names below. OOD labels are -1."""
+    """ID: any Kaggle split with splits/<name>_idx.npy (train, val, train40k, ...), 'test' (torchvision).
+    OOD: names below. OOD labels are -1."""
     tv = cfg["torchvision_root"]
     imgs = os.path.join(cfg["ood_root"], "images_classic")
     lists = os.path.join(cfg["ood_root"], "benchmark_imglist", "cifar10")
-    if name in ("train", "val"):
+    if os.path.exists(os.path.join(cfg["splits_dir"], f"{name}_idx.npy")):  # any Kaggle split
         return KaggleCIFAR10(cfg, name, transform)
     if name == "test":
         return torchvision.datasets.CIFAR10(tv, train=False, transform=transform)

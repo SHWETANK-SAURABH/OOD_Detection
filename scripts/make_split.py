@@ -25,3 +25,13 @@ assert len(np.intersect1d(train_idx, val_idx)) == 0
 print(f"seed={cfg['seed']} train={len(train_idx)} val={len(val_idx)}")
 print("train per class:", np.bincount(labels[train_idx], minlength=10).tolist())
 print("val per class:  ", np.bincount(labels[val_idx], minlength=10).tolist())
+
+# Kaggle-only hold-out (stage 9 ablation): split a stratified 5,000-image test set off the 45k train
+# split -> 40,000 train / 5,000 val (unchanged) / 5,000 test, all from the Kaggle images.
+tr40, te5 = train_test_split(train_idx, test_size=cfg["val_size"], stratify=labels[train_idx],
+                             random_state=cfg["seed"])
+tr40, te5 = np.sort(tr40), np.sort(te5)
+np.save(os.path.join(cfg["splits_dir"], "train40k_idx.npy"), tr40)
+np.save(os.path.join(cfg["splits_dir"], "test_kaggle5k_idx.npy"), te5)
+print(f"hold-out: train40k={len(tr40)} val={len(val_idx)} test_kaggle5k={len(te5)}")
+print("test_kaggle5k per class:", np.bincount(labels[te5], minlength=10).tolist())
