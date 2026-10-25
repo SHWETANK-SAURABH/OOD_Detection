@@ -4,6 +4,9 @@
 set -e
 PY=${PY:-.venv/Scripts/python.exe}   # Windows venv; on Linux use PY=.venv/bin/python
 OPENOOD_SHA=3c35632ee91b54b09d1f085d04f94744cece7d0b
+# keep tool caches (gdown writes ~/.cache/gdown/cookies.txt) inside the repo
+export HOME="$PWD/.cache/home" USERPROFILE="$PWD/.cache/home"
+mkdir -p "$HOME"
 
 # 1) OpenOOD image lists + images for Tiny-ImageNet, Places365, Textures.
 #    Uses OpenOOD's own script (scripts/download/download.py) with --dataset_mode dataset
