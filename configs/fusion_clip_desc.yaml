@@ -1,0 +1,8 @@
+# Scoring + fusion config, with the CLIP MCM column using LLM-written class descriptions.
+react_percentile: 90       # clip at this percentile of ID training activations
+knn_k: 50
+scorers: [msp, maxlogit, energy, react, knn, mahalanobis]
+tune_set: tin_val          # held-out OOD slice for tuned weights; never part of a reported test set
+use_clip: true
+clip_feature_dir: results/features/clip_vitb16
+clip_descriptions: true   # mean of LLM-written descriptions per class

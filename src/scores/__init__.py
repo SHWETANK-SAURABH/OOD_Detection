@@ -3,7 +3,7 @@ import os
 
 import numpy as np
 
-from src.scores import knn, logit, mahalanobis, react
+from src.scores import clip_score, knn, logit, mahalanobis, react
 
 SCORERS = ["msp", "maxlogit", "energy", "react", "knn", "mahalanobis"]
 
@@ -28,4 +28,9 @@ def compute_scores(feat_dir, sets, cfg):
             "knn": knn.score(ft, index, cfg["knn_k"]),
             "mahalanobis": mahalanobis.score(ft, means, prec),
         }
+    if cfg.get("use_clip"):  # optional MCM column; CLIP is frozen, so it is the same for every seed
+        cdir = cfg["clip_feature_dir"]
+        text = np.load(os.path.join(cdir, "text.npz"))["descriptions" if cfg["clip_descriptions"] else "names"]
+        for name in sets:
+            out[name]["clip"] = clip_score.score(np.load(os.path.join(cdir, f"{name}.npz"))["image_emb"], text)
     return out

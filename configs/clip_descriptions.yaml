@@ -1,0 +1,62 @@
+# LLM-written visual descriptions per CIFAR-10 class, used when clip_descriptions: true.
+# Each class text embedding is the mean of these description embeddings.
+airplane:
+  - a photo of an airplane, a fixed-wing aircraft with a long fuselage and two wings
+  - a photo of a passenger jet flying in the sky
+  - a photo of an airplane parked on a runway or airport tarmac
+  - a photo of a small propeller plane
+  - a photo of a military jet aircraft
+automobile:
+  - a photo of an automobile, a four-wheeled passenger car
+  - a photo of a sedan parked on a street
+  - a photo of a car with headlights, windshield and doors
+  - a photo of a sports car on a road
+  - a photo of a hatchback or station wagon
+bird:
+  - a photo of a bird, a small animal with feathers, wings and a beak
+  - a photo of a bird perched on a branch
+  - a photo of a bird standing on the ground or in water
+  - a photo of a songbird with colorful plumage
+  - a photo of a large bird such as an ostrich, an emu or a heron
+cat:
+  - a photo of a cat, a small furry pet with pointed ears and whiskers
+  - a photo of a domestic cat sitting or lying down
+  - a photo of a kitten
+  - a photo of a tabby cat with striped fur
+  - a close-up photo of a cat's face
+deer:
+  - a photo of a deer, a hoofed animal with slender legs and brown fur
+  - a photo of a deer with antlers standing in a forest
+  - a photo of a deer grazing in a field
+  - a photo of a fawn or a doe
+  - a photo of an elk or a moose in the wild
+dog:
+  - a photo of a dog, a furry domestic animal with a snout and floppy or pointed ears
+  - a photo of a puppy
+  - a photo of a pet dog sitting on grass
+  - a close-up photo of a dog's face
+  - a photo of a dog breed such as a terrier, a retriever or a spaniel
+frog:
+  - a photo of a frog, a small amphibian with smooth skin and long hind legs
+  - a photo of a green frog sitting on a leaf
+  - a photo of a toad with bumpy skin
+  - a photo of a frog near water
+  - a close-up photo of a frog with bulging eyes
+horse:
+  - a photo of a horse, a large hoofed animal with a mane and a long tail
+  - a photo of a horse standing in a field or a paddock
+  - a photo of a person riding a horse
+  - a photo of a brown horse running
+  - a photo of a pony or a foal
+ship:
+  - a photo of a ship, a large boat on the water
+  - a photo of a cargo ship or an ocean liner at sea
+  - a photo of a ship docked in a harbor
+  - a photo of a sailing ship with masts
+  - a photo of a boat or a ferry on a river
+truck:
+  - a photo of a truck, a large motor vehicle for carrying goods
+  - a photo of a pickup truck
+  - a photo of a semi-trailer truck on a highway
+  - a photo of a fire truck or a dump truck
+  - a photo of a delivery truck with a box-shaped cargo area
